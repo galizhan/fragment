@@ -29,8 +29,11 @@ public class AddingFragment extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("has",(wordEd.getText().toString())+"");
-                if(wordEd.getText()!=null && wordEd.getText().toString()!=""){
+                Log.d("has",(wordEd.getText().toString().equals(""))+"");
+                if(wordEd.getText().toString().equals(""))
+                    Toast.makeText(view.getContext(),"You haven't wrote any word",Toast.LENGTH_LONG);
+
+                else{
 
                     SharedPreferences.Editor ed = sp.edit();
                     int count = sp.getInt("count",0);
@@ -39,9 +42,7 @@ public class AddingFragment extends Fragment {
                     ed.commit();
                     wordEd.setText("");
                 }
-                else{
-                    Toast.makeText(view.getContext(),"You haven't wrote any word",Toast.LENGTH_LONG);
-                }
+
             }
         });
         return view;
